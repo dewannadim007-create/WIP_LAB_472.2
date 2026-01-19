@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Banking - E-Wallet Banking</title>
+    <link rel="stylesheet" href="/css/modern-banking.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="dashboard-container">
+
+        <nav class="sidebar">
+            <div class="brand">
+                <i class="fas fa-university"></i> <span>E-WALLET</span>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a th:href="@{/home}">
+                        <i class="fas fa-home"></i> <span>Dashboard</span>
+                    </a></li>
+                <li><a th:href="@{/ebanking}" class="active">
+                        <i class="fas fa-university"></i> <span>E-Banking</span>
+                    </a></li>
+                <li><a th:href="@{/home/to-send-money}">
+                        <i class="fas fa-paper-plane"></i> <span>Send Money</span>
+                    </a></li>
+                <li><a th:href="@{/home/to-utility}">
+                        <i class="fas fa-lightbulb"></i> <span>Bill Pay</span>
+                    </a></li>
+                <li><a th:href="@{/home/to-statement}">
+                        <i class="fas fa-file-invoice-dollar"></i> <span>Statement</span>
+                    </a></li>
+                <li><a th:href="@{/home/to-history}">
+                        <i class="fas fa-history"></i> <span>Transaction History</span>
+                    </a></li>
+                <li><a th:href="@{/home/to-menu}">
+                        <i class="fas fa-cog"></i> <span>Settings</span>
+                    </a></li>
+                <li><a th:href="@{/chequebook}">
+                        <i class="fas fa-money-check"></i> <span>Cheque Book</span>
+                    </a></li>
+                <li><a th:href="@{/logout}" style="color: var(--danger);">
+                        <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+                    </a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+
+            <div class="mobile-header">
+                <h3>E-WALLET</h3>
+                <div class="mobile-actions">
+                    <button id="themeToggleMobile" class="toggle-btn"><i class="fas fa-moon"></i></button>
+                </div>
+            </div>
+
+
+            <div class="top-bar">
+                <div class="top-bar-left">
+                    <button id="sidebarToggle" class="toggle-btn" title="Toggle Sidebar"><i
+                            class="fas fa-bars"></i></button>
+                    <h2 class="page-title">E-Banking</h2>
+                </div>
+
+                <div class="top-bar-center">
+                </div>
+
+                <div class="user-actions">
+
+                    <button id="themeToggle" class="icon-btn" title="Toggle Theme"><i class="fas fa-moon"></i></button>
+                    <div class="user-profile" onclick="window.location.href='/user-profile'">
+                        <div class="avatar custom-color">U</div>
+                        <div class="user-info d-none">
+                            <span class="user-name" th:text="${name}">User</span>
+                            <span class="user-role">Customer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <section class="page-content">
+
+
+                <div class="actions-grid ebanking-grid">
+                    <div class="balance-card wallet-card-gradient">
+                        <div class="balance-info">
+                            <h3><i class="fas fa-wallet"></i> Digital Wallet</h3>
+                            <div class="amount"
+                                th:text="${walletBalance != null ? '৳ ' + walletBalance : 'Tap to Update'}">---</div>
+                            <div class="subtitle cursor-pointer"
+                                onclick="window.location.href='/api/ebanking/check-wallet'">
+                                <i class="fas fa-sync-alt"></i> Refresh Balance
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="balance-card bank-card-gradient">
+                        <div class="balance-info">
+                            <h3><i class="fas fa-university"></i> Linked Bank Account</h3>
+                            <div class="amount" th:text="${bankBalance != null ? '৳ ' + bankBalance : 'Tap to Update'}">
+                                ---</div>
+                            <div class="subtitle cursor-pointer"
+                                onclick="window.location.href='/api/ebanking/check-bank'">
+                                <i class="fas fa-sync-alt"></i> Refresh Balance
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-card mt-2">
+                    <h3 class="mt-0 text-primary">Actions</h3>
+                    <div class="d-flex gap-1 flex-wrap">
+                        <a href="/ebanking/add-money" class="btn btn-primary">
+                            <i class="fas fa-plus-circle"></i> Add Money to Wallet
+                        </a>
+                        <a href="/home/to-send-money" class="btn btn-primary action-btn-accent">
+                            <i class="fas fa-paper-plane"></i> Transfer Funds
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="/js/dashboard.js"></script>
+</body>
+
+</html>

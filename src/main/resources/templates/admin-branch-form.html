@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${pageTitle} + ' - E-Wallet Admin'">Manage Location - E-Wallet Admin</title>
+    <link rel="stylesheet" href="/css/modern-banking.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="admin-theme">
+    <div class="dashboard-container">
+
+        <nav class="sidebar">
+            <div class="brand">
+                <i class="fas fa-shield-alt"></i> <span>ADMIN</span>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a th:href="@{/admin/home}">
+                        <i class="fas fa-home"></i> <span>Dashboard</span>
+                    </a></li>
+                <li><a th:href="@{/admin/users}">
+                        <i class="fas fa-users"></i> <span>Manage Users</span>
+                    </a></li>
+                <li><a th:href="@{/admin/add-user}">
+                        <i class="fas fa-user-plus"></i> <span>Add User</span>
+                    </a></li>
+                <li><a th:href="@{/admin/transactions}">
+                        <i class="fas fa-exchange-alt"></i> <span>Transactions</span>
+                    </a></li>
+                <li><a th:href="@{/admin/cheque-status}">
+                        <i class="fas fa-money-check"></i> <span>Cheque Books</span>
+                    </a></li>
+                <li><a th:href="@{/admin/branches}" class="active">
+                        <i class="fas fa-map-marker-alt"></i> <span>Locations</span>
+                    </a></li>
+                <li><a th:href="@{/admin/logout}" style="color: var(--danger);">
+                        <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+                    </a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <div class="mobile-header">
+                <h3>MANAGE LOCATION</h3>
+                <div class="mobile-actions">
+                    <button id="themeToggleMobile" class="toggle-btn"><i class="fas fa-moon"></i></button>
+                </div>
+            </div>
+
+
+            <div class="top-bar">
+                <div class="top-bar-left">
+                    <button id="sidebarToggle" class="toggle-btn" title="Toggle Sidebar"><i
+                            class="fas fa-bars"></i></button>
+                    <h2 class="page-title" th:text="${pageTitle}">Manage Location</h2>
+                </div>
+
+                <div class="top-bar-center">
+                </div>
+
+                <div class="user-actions">
+
+                    <button id="themeToggle" class="icon-btn" title="Toggle Theme"><i class="fas fa-moon"></i></button>
+                    <div class="user-profile">
+                        <div class="avatar">A</div>
+                        <div class="user-info">
+                            <span class="user-name">Administrator</span>
+                            <span class="user-role">Super Admin</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <section class="page-content">
+
+
+                <div class="section-card centered-form-card" style="max-width: 800px;">
+                    <form th:action="@{/admin/branches/add}" th:object="${branch}" method="post">
+                        <!-- Hidden ID for Edit Mode -->
+                        <input type="hidden" th:field="*{id}" />
+                    </form>
+
+                    <!-- Actual form using conditional action -->
+                    <form th:action="${branch.id == null ? '/admin/branches/add' : '/admin/branches/update'}"
+                        th:object="${branch}" method="post">
+
+                        <input type="hidden" th:field="*{id}" />
+
+                        <div class="form-group">
+                            <label class="font-weight-500">Name</label>
+                            <input type="text" th:field="*{name}" class="form-control"
+                                placeholder="e.g. Dhanmondi Branch" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="font-weight-500">Type</label>
+                            <select th:field="*{type}" class="form-control" required>
+                                <option value="Main">Main Branch</option>
+                                <option value="Sub-Branch">Sub-Branch</option>
+                                <option value="Branch">General Branch</option>
+                                <option value="ATM">ATM</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group pb-1">
+                            <label class="font-weight-500">Location
+                                (Address)</label>
+                            <textarea th:field="*{location}" class="form-control min-h-80"
+                                placeholder="e.g. House 12, Road 5..." required></textarea>
+                            <small class="muted-text">This address is used for mapping if coordinates are
+                                missing.</small>
+                        </div>
+
+                        <div class="d-flex gap-1 mt-2">
+                            <button type="submit" class="btn btn-primary px-2">
+                                <i class="fas fa-save"></i> Save Location
+                            </button>
+                            <a href="/admin/branches" class="btn btn-secondary px-2">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="/js/dashboard.js"></script>
+</body>
+
+</html>

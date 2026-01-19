@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - E-Wallet Banking</title>
+    <link rel="stylesheet" href="/css/modern-banking.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="admin-theme">
+    <div class="dashboard-container">
+
+        <nav class="sidebar">
+            <div class="brand">
+                <i class="fas fa-shield-alt"></i> <span>ADMIN</span>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a th:href="@{/admin/home}" class="active">
+                        <i class="fas fa-home"></i> <span>Dashboard</span>
+                    </a></li>
+                <li><a th:href="@{/admin/users}">
+                        <i class="fas fa-users"></i> <span>Manage Users</span>
+                    </a></li>
+                <li><a th:href="@{/admin/add-user}">
+                        <i class="fas fa-user-plus"></i> <span>Add User</span>
+                    </a></li>
+                <li><a th:href="@{/admin/transactions}">
+                        <i class="fas fa-exchange-alt"></i> <span>Transactions</span>
+                    </a></li>
+                <li><a th:href="@{/admin/cheque-status}">
+                        <i class="fas fa-money-check"></i> <span>Cheque Books</span>
+                    </a></li>
+                <li><a th:href="@{/admin/branches}">
+                        <i class="fas fa-map-marker-alt"></i> <span>Locations</span>
+                    </a></li>
+                <li><a th:href="@{/admin/analytics}">
+                        <i class="fas fa-chart-line"></i> <span>Financial Reports</span>
+                    </a></li>
+                <li><a th:href="@{/admin/logout}" style="color: var(--danger);">
+                        <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+                    </a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+
+            <div class="mobile-header">
+                <h3>ADMIN PANEL</h3>
+                <div class="mobile-actions">
+                    <button id="themeToggleMobile" class="toggle-btn"><i class="fas fa-moon"></i></button>
+                </div>
+            </div>
+
+
+            <div class="top-bar">
+                <div class="top-bar-left">
+                    <button id="sidebarToggle" class="toggle-btn" title="Toggle Sidebar"><i
+                            class="fas fa-bars"></i></button>
+                    <h2 class="page-title">Dashboard</h2>
+                </div>
+
+                <div class="top-bar-center">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; color: var(--text-color);">
+                        <i class="far fa-clock"></i>
+                        <span id="liveDateTime"
+                            style="font-weight: 500; font-family: monospace; font-size: 1.1rem;">Loading...</span>
+                    </div>
+                </div>
+
+                <div class="user-actions">
+
+                    <button id="themeToggle" class="icon-btn" title="Toggle Theme"><i class="fas fa-moon"></i></button>
+                    <div class="user-profile">
+                        <div class="avatar">A</div>
+                        <div class="user-info">
+                            <span class="user-name">Administrator</span>
+                            <span class="user-role">Super Admin</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <section class="page-content">
+                <div class="section-card mb-1 d-flex justify-between align-center">
+                    <div>
+                        <p class="muted-text" th:text="${greetings}">Good Morning</p>
+                        <h2 class="m-0 text-primary" th:text="${name}">ADMINISTRATOR</h2>
+                    </div>
+                </div>
+
+                <div class="admin-system-status">
+                    <div class="balance-info">
+                        <h3><i class="fas fa-server"></i> Admin Console</h3>
+                        <div class="amount" style="font-size: 1.5rem;">System Operational</div>
+                        <div class="subtitle">Full Access Granted</div>
+                    </div>
+                </div>
+
+                <h3 class="section-title mb-1">System Overview</h3>
+                <div class="stats-grid">
+                    <div class="stat-card stat-card-blue">
+                        <div class="stat-icon" style="color: #1976d2;">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <span class="stat-label">Total Users</span>
+                        <span class="stat-value" th:text="${totalUsers}">0</span>
+                    </div>
+
+                    <div class="stat-card stat-card-green">
+                        <div class="stat-icon" style="color: #2e7d32;">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <span class="stat-label">Daily Transactions</span>
+                        <span class="stat-value" th:text="${dailyTransactions}">0</span>
+                    </div>
+
+                    <div class="stat-card stat-card-orange">
+                        <div class="stat-icon" style="color: #ef6c00;">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <span class="stat-label">Daily Volume</span>
+                        <span class="stat-value" th:text="${'৳ ' + dailyVolume}">৳ 0</span>
+                    </div>
+
+                    <div class="stat-card stat-card-purple">
+                        <div class="stat-icon" style="color: #7b1fa2;">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <span class="stat-label">Total Transactions</span>
+                        <span class="stat-value" th:text="${totalTransactions}">0</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="/js/dashboard.js"></script>
+</body>
+
+</html>

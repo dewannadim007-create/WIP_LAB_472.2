@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login - E-Wallet Banking</title>
+    <link rel="stylesheet" href="/css/modern-banking.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="auth-layout">
+        <div class="auth-card">
+            <div class="text-center mb-2">
+                <h1 class="m-0 text-primary mb-0-5">E-WALLET BIZ</h1>
+                <p class="text-secondary m-0">Secure Banking Portal</p>
+            </div>
+
+            <div class="mt-2">
+                <h3 class="text-center mb-2">Login To Account</h3>
+
+                <form action="/api/auth/login" method="post">
+                    <div class="form-group">
+                        <label class="text-secondary">Mobile Number/ID</label>
+                        <input type="text" name="mobile" class="form-control" placeholder="017xxxxxxxx" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="text-secondary">Password</label>
+                        <input type="password" name="password" class="form-control" placeholder="••••••••" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100 p-1 font-size-1">SECURE LOGIN</button>
+                </form>
+
+                <div class="text-center mt-1half">
+                    <p class="muted-text m-0 mb-0-5 font-size-0-9">New to E-Wallet?</p>
+                    <a href="/login/to-registration" class="btn btn-secondary w-100 p-0-5 font-size-0-9">Open a New
+                        Account</a>
+                </div>
+
+                <div th:if="${errorMessage}" class="alert-error mt-1 text-center border-radius-sm p-1">
+                    <span th:text="${errorMessage}">Error Message</span>
+                </div>
+            </div>
+
+            <div class="text-center mt-2">
+                <a href="/login/back" class="text-secondary font-size-0-9">← Back to Home</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

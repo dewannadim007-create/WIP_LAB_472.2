@@ -1,0 +1,174 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - E-Wallet Banking</title>
+    <link rel="stylesheet" href="/css/modern-banking.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="dashboard-container">
+
+        <nav class="sidebar">
+            <div class="brand">
+                <i class="fas fa-university"></i> <span>E-WALLET</span>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a th:href="@{/home}">
+                        <i class="fas fa-home"></i> <span>Dashboard</span>
+                    </a></li>
+                <li><a th:href="@{/ebanking}">
+                        <i class="fas fa-university"></i> <span>E-Banking</span>
+                    </a></li>
+                <li><a th:href="@{/home/to-send-money}">
+                        <i class="fas fa-paper-plane"></i> <span>Send Money</span>
+                    </a></li>
+                <li><a th:href="@{/home/to-utility}">
+                        <i class="fas fa-lightbulb"></i> <span>Bill Pay</span>
+                    </a></li>
+                <li><a th:href="@{/home/to-statement}">
+                        <i class="fas fa-file-invoice-dollar"></i> <span>Statement</span>
+                    </a></li>
+                <li><a th:href="@{/home/to-history}">
+                        <i class="fas fa-history"></i> <span>Transaction History</span>
+                    </a></li>
+                <li><a th:href="@{/home/to-menu}" class="active">
+                        <i class="fas fa-cog"></i> <span>Settings</span>
+                    </a></li>
+                <li><a th:href="@{/chequebook}">
+                        <i class="fas fa-money-check"></i> <span>Cheque Book</span>
+                    </a></li>
+                <li><a th:href="@{/logout}" style="color: var(--danger);">
+                        <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+                    </a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+
+            <div class="mobile-header">
+                <h3>E-WALLET</h3>
+                <div class="mobile-actions">
+                    <button id="themeToggleMobile" class="toggle-btn"><i class="fas fa-moon"></i></button>
+                </div>
+            </div>
+
+
+            <div class="top-bar">
+                <div class="top-bar-left">
+                    <button id="sidebarToggle" class="toggle-btn" title="Toggle Sidebar"><i
+                            class="fas fa-bars"></i></button>
+                    <h2 class="page-title">My Profile</h2>
+                </div>
+
+                <div class="top-bar-center">
+                    <!-- Search is not usually needed on profile page, so we leave it empty or put a decorative element to keep layout clean -->
+                </div>
+
+                <div class="user-actions">
+
+                    <button id="themeToggle" class="icon-btn" title="Toggle Theme"><i class="fas fa-moon"></i></button>
+                    <div class="user-profile">
+                        <div class="avatar"
+                            style="background-color: var(--secondary-color); color: var(--primary-dark);">U</div>
+                        <div class="user-info">
+                            <span class="user-name" th:text="${name}">User</span>
+                            <span class="user-role">Customer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <section class="page-content center-content" style="max-width: 800px; margin: 0 auto;">
+
+                <!-- Main Profile Card -->
+                <div class="section-card text-center p-3 mb-2 profile-header-card">
+                    <div class="d-flex justify-center mb-1">
+                        <div class="rounded-circle d-flex align-center justify-center shadow-sm"
+                            style="width: 100px; height: 100px; background-color: var(--secondary-color); color: var(--primary-dark); font-size: 3.5rem;">
+                            <span th:text="${#strings.substring(name,0,1)}">U</span>
+                        </div>
+                    </div>
+
+                    <h2 class="m-0 mb-0-25" th:text="${name}">User Name</h2>
+                    <p class="muted-text mb-1" th:text="${email}">user@example.com</p>
+                </div>
+
+                <!-- Details Grid -->
+                <div class="section-card">
+                    <h3 class="section-title border-bottom pb-1 mb-1half"><i
+                            class="fas fa-id-card text-primary mr-0-5"></i> Personal Information</h3>
+
+                    <div class="d-grid gap-1half" style="grid-template-columns: 1fr;">
+
+                        <div class="d-flex align-center border-bottom pb-1 mb-0-5">
+                            <div class="mr-1 d-flex align-center justify-center rounded-circle bg-light"
+                                style="width: 40px; height: 40px;">
+                                <i class="fas fa-mobile-alt text-primary"></i>
+                            </div>
+                            <div>
+                                <label class="d-block muted-text font-size-0-8 mb-0-25">Mobile Number</label>
+                                <span class="font-weight-500 font-size-1-1" th:text="${mobile}">01700000000</span>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-center border-bottom pb-1 mb-0-5">
+                            <div class="mr-1 d-flex align-center justify-center rounded-circle bg-light"
+                                style="width: 40px; height: 40px;">
+                                <i class="fas fa-university text-primary"></i>
+                            </div>
+                            <div>
+                                <label class="d-block muted-text font-size-0-8 mb-0-25">Account Number</label>
+                                <span class="font-weight-500 font-size-1-1" th:text="${account}">1234567890</span>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-center border-bottom pb-1 mb-0-5">
+                            <div class="mr-1 d-flex align-center justify-center rounded-circle bg-light"
+                                style="width: 40px; height: 40px;">
+                                <i class="fas fa-id-card text-primary"></i>
+                            </div>
+                            <div>
+                                <label class="d-block muted-text font-size-0-8 mb-0-25">National ID</label>
+                                <span class="font-weight-500 font-size-1-1" th:text="${nid}">123456789</span>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-center border-bottom pb-1 mb-0-5">
+                            <div class="mr-1 d-flex align-center justify-center rounded-circle bg-light"
+                                style="width: 40px; height: 40px;">
+                                <i class="fas fa-birthday-cake text-primary"></i>
+                            </div>
+                            <div>
+                                <label class="d-block muted-text font-size-0-8 mb-0-25">Date of Birth</label>
+                                <span class="font-weight-500 font-size-1-1" th:text="${dob}">01-Jan-1990</span>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-center">
+                            <div class="mr-1 d-flex align-center justify-center rounded-circle bg-light"
+                                style="width: 40px; height: 40px;">
+                                <i class="fas fa-map-marker-alt text-primary"></i>
+                            </div>
+                            <div>
+                                <label class="d-block muted-text font-size-0-8 mb-0-25">Address</label>
+                                <span class="font-weight-500 font-size-1-1"
+                                    th:text="${user.address} ?: 'Not Provided'">123 Street Name, City</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </section>
+        </main>
+    </div>
+    <script src="/js/dashboard.js"></script>
+</body>
+
+</html>

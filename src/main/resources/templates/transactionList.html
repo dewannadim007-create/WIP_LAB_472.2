@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction History - Admin E-Wallet</title>
+    <link rel="stylesheet" href="/css/modern-banking.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="admin-theme">
+    <div class="dashboard-container">
+
+        <nav class="sidebar">
+            <div class="brand">
+                <i class="fas fa-shield-alt"></i> <span>ADMIN</span>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a th:href="@{/admin/home}">
+                        <i class="fas fa-home"></i> <span>Dashboard</span>
+                    </a></li>
+                <li><a th:href="@{/admin/users}">
+                        <i class="fas fa-users"></i> <span>Manage Users</span>
+                    </a></li>
+                <li><a th:href="@{/admin/add-user}">
+                        <i class="fas fa-user-plus"></i> <span>Add User</span>
+                    </a></li>
+                <li><a th:href="@{/admin/transactions}" class="active">
+                        <i class="fas fa-exchange-alt"></i> <span>Transactions</span>
+                    </a></li>
+                <li><a th:href="@{/admin/cheque-status}">
+                        <i class="fas fa-money-check"></i> <span>Cheque Books</span>
+                    </a></li>
+                <li><a th:href="@{/admin/branches}">
+                        <i class="fas fa-map-marker-alt"></i> <span>Locations</span>
+                    </a></li>
+                <li><a th:href="@{/admin/analytics}">
+                        <i class="fas fa-chart-line"></i> <span>Financial Reports</span>
+                    </a></li>
+                <li><a th:href="@{/admin/logout}" class="text-danger">
+                        <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+                    </a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <div class="mobile-header">
+                <h3>TRANSACTIONS</h3>
+                <div class="mobile-actions">
+                    <button id="themeToggleMobile" class="toggle-btn"><i class="fas fa-moon"></i></button>
+                </div>
+            </div>
+
+
+            <div class="top-bar">
+                <div class="top-bar-left">
+                    <button id="sidebarToggle" class="toggle-btn" title="Toggle Sidebar"><i
+                            class="fas fa-bars"></i></button>
+                    <h2 class="page-title">Transaction Management</h2>
+                </div>
+
+                <div class="top-bar-center">
+
+                </div>
+
+                <div class="user-actions">
+
+                    <button id="themeToggle" class="icon-btn" title="Toggle Theme"><i class="fas fa-moon"></i></button>
+                    <div class="user-profile">
+                        <div class="avatar">A</div>
+                        <div class="user-info">
+                            <span class="user-name">Administrator</span>
+                            <span class="user-role">Super Admin</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <section class="page-content">
+
+
+                <div class="section-card mb-1">
+                    <form action="/admin/transactions" method="get" class="admin-filter-bar">
+                        <input type="text" name="search" class="form-control admin-search-input"
+                            placeholder="RefID, Sender..." th:value="${searchTerm}">
+
+                        <select name="type" class="form-control admin-select-input">
+                            <option value="All">All Types</option>
+                            <option value="add to wallet" th:selected="${selectedType == 'add to wallet'}">Add Money
+                            </option>
+                            <option value="send money" th:selected="${selectedType == 'send money'}">Send Money</option>
+                            <option value="wallet to wallet" th:selected="${selectedType == 'wallet to wallet'}">Wallet
+                                Transfer</option>
+                            <option value="wallet to bank" th:selected="${selectedType == 'wallet to bank'}">Wallet to
+                                Bank</option>
+                            <option value="mobile recharge" th:selected="${selectedType == 'mobile recharge'}">Recharge
+                            </option>
+                            <option value="utility" th:selected="${selectedType == 'utility'}">Utility Bill</option>
+                            <option value="bank to bank" th:selected="${selectedType == 'bank to bank'}">Bank to Bank
+                            </option>
+                            <option value="bank to wallet" th:selected="${selectedType == 'bank to wallet'}">Bank to
+                                Wallet</option>
+                        </select>
+
+                        <select name="days" class="form-control admin-select-input">
+                            <option value="All">All Time</option>
+                            <option value="1" th:selected="${selectedDays == '1'}">Today</option>
+                            <option value="7" th:selected="${selectedDays == '7'}">Last 7 Days</option>
+                            <option value="30" th:selected="${selectedDays == '30'}">Last 30 Days</option>
+                        </select>
+
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-filter"></i> Filter</button>
+                        <a href="/admin/transactions" class="btn btn-secondary">Reset</a>
+                    </form>
+                </div>
+
+                <div class="section-card p-0">
+                    <div class="table-responsive">
+                        <table class="data-table cheque-table">
+                            <thead>
+                                <tr>
+                                    <th>RefID</th>
+                                    <th>Date</th>
+                                    <th>Sender</th>
+                                    <th>Receiver</th>
+                                    <th>Type</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="transaction : ${transactions}" class="hover-bg-light transition-bg">
+                                    <td class="text-secondary font-mono" th:text="${transaction.ref}">
+                                        RefID</td>
+                                    <td th:text="${transaction.date}">Date</td>
+                                    <td th:text="${transaction.sender}">Sender</td>
+                                    <td th:text="${transaction.receiver}">Receiver</td>
+                                    <td><span class="badge badge-info" th:text="${transaction.type}">Type</span></td>
+                                    <td class="font-weight-600" th:text="'৳ ' + ${transaction.amount}">Amount</td>
+                                </tr>
+                                <tr th:if="${#lists.isEmpty(transactions)}">
+                                    <td colspan="6" class="text-center p-3 muted-text">
+                                        <i class="fas fa-search font-size-2 opacity-0-5 mb-1"></i><br>
+                                        No transactions found matching your criteria.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="/js/dashboard.js"></script>
+</body>
+
+</html>
