@@ -1517,7 +1517,7 @@ a {
 
 /* Utility Classes - Helpers */
 .is-hidden {
-    display: none !important;
+    display: none;
 }
 
 .selected-row {

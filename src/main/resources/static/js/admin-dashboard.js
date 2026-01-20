@@ -19,8 +19,11 @@ function initChequeStatus() {
         if (selectedAccountInput) selectedAccountInput.value = account;
         if (displayAccountSpan) displayAccountSpan.textContent = account;
 
-        if (actionPanel) actionPanel.style.display = 'flex';
-        if (instructionText) instructionText.style.display = 'none';
+        if (actionPanel) {
+            actionPanel.classList.remove('is-hidden');
+            actionPanel.style.display = 'flex'; // Ensure flex layout is applied
+        }
+        if (instructionText) instructionText.classList.add('is-hidden');
     };
 }
 
