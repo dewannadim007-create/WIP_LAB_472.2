@@ -1524,3 +1524,28 @@ a {
     background-color: rgba(0, 77, 64, 0.08) !important;
     border-left: 3px solid var(--primary-color);
 }
+
+.text-success {
+    color: var(--success);
+}
+
+.text-warning {
+    color: var(--warning);
+}
+
+.text-danger {
+    color: var(--danger);
+}
+
+.d-inline {
+    display: inline;
+}
+
+.gap-0-5 {
+    gap: 0.5rem;
+}
+
+.d-flex {
+    display: flex;
+    align-items: center;
+}

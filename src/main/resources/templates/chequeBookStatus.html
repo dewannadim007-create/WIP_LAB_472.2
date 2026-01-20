@@ -108,6 +108,7 @@
                                     <th>Quantity</th>
                                     <th>Applied Date</th>
                                     <th>Status</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -122,6 +123,35 @@
                                         <span class="badge"
                                             th:classappend="${cheque.accountType == 'Success'} ? 'badge-success' : (${cheque.accountType == 'Declined'} ? 'badge-warn' : 'badge-info')"
                                             th:text="${cheque.accountType}">Pending</span>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex gap-0-5" onclick="event.stopPropagation()">
+                                            <form action="/admin/api/cheque-status/update" method="post"
+                                                class="d-inline">
+                                                <input type="hidden" name="accountId" th:value="${cheque.id}">
+                                                <button type="submit" name="action" value="approve"
+                                                    class="btn-icon text-success" title="Approve">
+                                                    <i class="fas fa-check"></i>
+                                                </button>
+                                            </form>
+                                            <form action="/admin/api/cheque-status/update" method="post"
+                                                class="d-inline">
+                                                <input type="hidden" name="accountId" th:value="${cheque.id}">
+                                                <button type="submit" name="action" value="reject"
+                                                    class="btn-icon text-warning" title="Decline">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </form>
+                                            <form action="/admin/api/cheque-status/update" method="post"
+                                                class="d-inline">
+                                                <input type="hidden" name="accountId" th:value="${cheque.id}">
+                                                <button type="submit" name="action" value="delete"
+                                                    class="btn-icon text-danger" title="Delete"
+                                                    onclick="return confirm('Delete this request?');">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr th:if="${#lists.isEmpty(cheques)}">
