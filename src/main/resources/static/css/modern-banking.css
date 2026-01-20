@@ -1514,3 +1514,13 @@ a {
     background-color: var(--bg-color);
     /* Subtle contrast */
 }
+
+/* Utility Classes - Helpers */
+.is-hidden {
+    display: none !important;
+}
+
+.selected-row {
+    background-color: rgba(0, 77, 64, 0.08) !important;
+    border-left: 3px solid var(--primary-color);
+}
