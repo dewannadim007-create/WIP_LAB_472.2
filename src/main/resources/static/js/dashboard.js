@@ -4,6 +4,10 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Clear the hardcoded styles used for anti-flash so CSS variables take full control
+    document.documentElement.style.backgroundColor = '';
+    document.documentElement.style.color = '';
+
     // === Theme Toggle Logic ===
     const themeToggleBtn = document.getElementById('themeToggle');
     const storedTheme = localStorage.getItem('theme');

@@ -91,14 +91,24 @@
             <section class="page-content">
 
                 <div class="card-grid">
-                    <div class="action-card" style="align-items: flex-start; text-align: left; padding: 1.5rem;">
-                        <span style="font-size: 0.9rem; color: var(--text-secondary); font-weight: 400;">Total
-                            Transaction
-                            Volume</span>
-                        <h2 style="font-size: 2.5rem; margin: 10px 0; color: var(--primary-color);">
-                            <span th:text="${totalVolume}">0.00</span> BDT
+                    <div class="action-card"
+                        style="align-items: flex-start; text-align: left; padding: 1.5rem; border-left: 5px solid var(--secondary-color);">
+                        <div style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
+                            <span
+                                style="font-size: 0.9rem; color: var(--text-secondary); font-weight: 500; text-transform: uppercase; letter-spacing: 1px;">Total
+                                Volume</span>
+                            <i class="fas fa-coins"
+                                style="color: var(--secondary-color); font-size: 1.5rem; opacity: 0.8;"></i>
+                        </div>
+                        <h2
+                            style="font-size: 2.2rem; margin: 15px 0; color: var(--text-primary); font-family: 'Playfair Display', serif;">
+                            <span th:text="${totalVolume}">0.00</span> <span
+                                style="font-size: 1rem; color: var(--text-secondary);">BDT</span>
                         </h2>
-                        <span class="badge info">Lifetime</span>
+                        <span class="badge"
+                            style="background-color: rgba(255, 215, 0, 0.15); color: #b7950b; border: 1px solid rgba(255, 215, 0, 0.3);">
+                            <i class="fas fa-chart-line"></i> Lifetime Performance
+                        </span>
                     </div>
 
                     <div class="action-card" style="align-items: flex-start; text-align: left; padding: 1.5rem;">

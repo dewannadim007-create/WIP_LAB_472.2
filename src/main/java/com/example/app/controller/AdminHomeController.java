@@ -116,11 +116,24 @@ public class AdminHomeController {
         List<Transaction> allTransactions = transactionService.getAllTransactionList();
 
         List<Transaction> filtered = allTransactions.stream().filter(t -> {
-            boolean matchType = "ALL".equalsIgnoreCase(type)
-                    || (t.getType() != null && t.getType().equalsIgnoreCase(type));
+            boolean matchType = false;
+            String tType = t.getType() != null ? t.getType().toLowerCase() : "";
+
+            if ("ALL".equalsIgnoreCase(type)) {
+                matchType = true;
+            } else if ("Deposit".equalsIgnoreCase(type)) {
+                matchType = tType.contains("add to wallet") || tType.contains("deposit");
+            } else if ("Withdraw".equalsIgnoreCase(type)) {
+                matchType = tType.contains("withdraw") || tType.contains("cash out");
+            } else if ("Transfer".equalsIgnoreCase(type)) {
+                // Matches "wallet to wallet", "bank to bank", etc., excluding "add to wallet"
+                matchType = tType.contains("to") && !tType.contains("add to wallet");
+            } else if ("Payment".equalsIgnoreCase(type)) {
+                matchType = tType.contains("bill") || tType.contains("recharge") || tType.contains("payment");
+            }
 
             boolean matchDate = true;
-            if (t.getDate() != null) {
+            if (t.getDate() != null && t.getDate().length() >= 10) {
                 String txDate = t.getDate().substring(0, 10);
                 if (startDate != null && !startDate.isEmpty()) {
                     if (txDate.compareTo(startDate) < 0)
