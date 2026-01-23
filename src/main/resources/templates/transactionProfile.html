@@ -100,7 +100,8 @@
                                     <td th:text="${transaction.date}">2023-01-01</td>
                                     <td th:text="${transaction.sender}">017xxxxxxxx</td>
                                     <td th:text="${transaction.receiver}">019xxxxxxxx</td>
-                                    <td th:text="'৳ ' + ${transaction.amount}" style="font-weight:600;">৳ 500.00</td>
+                                    <td th:text="'BDT ' + ${transaction.amount}" style="font-weight:600;">BDT 500.00
+                                    </td>
                                     <td>
                                         <span class="badge info" th:text="${transaction.type}">TRANSFER</span>
                                     </td>
@@ -124,6 +125,3 @@
 </body>
 
 </html>
-
-
-

@@ -91,14 +91,14 @@
                         style="border: 1px dashed var(--primary-color);">
                         <span class="linked-balance-label d-block text-secondary mb-0-5">Linked Bank Balance</span>
                         <span class="linked-balance-amount font-weight-bold font-size-1-2 text-primary"
-                            th:text="${balance != null ? 'à§³ ' + balance : '---'}">à§³ 0.00</span>
+                            th:text="${balance != null ? 'BDT ' + balance : '---'}">BDT 0.00</span>
                     </div>
 
                     <form action="/api/add-money" method="post" class="card-grid" style="--columns:1; gap:1.25rem;">
                         <div class="form-group">
-                            <label>Amount (Tk)</label>
+                            <label>Amount (BDT)</label>
                             <div class="input-group mb-0">
-                                <span class="input-group-text">à§³</span>
+                                <span class="input-group-text">BDT</span>
                                 <input type="number" name="amount" class="form-control" placeholder="0.00" min="50"
                                     required>
                             </div>
@@ -138,6 +138,3 @@
 </body>
 
 </html>
-
-
-

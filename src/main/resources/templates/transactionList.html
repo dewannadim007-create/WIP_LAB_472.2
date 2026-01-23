@@ -78,10 +78,10 @@
 
                 <div class="section-card mb-1">
                     <form action="/admin/transactions" method="get" class="admin-filter-bar">
-                        <input type="text" name="search" class="form-control admin-search-input"
+                        <input type="text" id="transactionSearch" name="search" class="form-control admin-search-input"
                             placeholder="RefID, Sender..." th:value="${searchTerm}">
 
-                        <select name="type" class="form-control admin-select-input">
+                        <select id="transactionType" name="type" class="form-control admin-select-input">
                             <option value="All">All Types</option>
                             <option value="add to wallet" th:selected="${selectedType == 'add to wallet'}">Add Money
                             </option>
@@ -99,7 +99,7 @@
                                 Wallet</option>
                         </select>
 
-                        <select name="days" class="form-control admin-select-input">
+                        <select id="transactionDays" name="days" class="form-control admin-select-input">
                             <option value="All">All Time</option>
                             <option value="1" th:selected="${selectedDays == '1'}">Today</option>
                             <option value="7" th:selected="${selectedDays == '7'}">Last 7 Days</option>
@@ -132,7 +132,7 @@
                                     <td th:text="${transaction.sender}">Sender</td>
                                     <td th:text="${transaction.receiver}">Receiver</td>
                                     <td><span class="badge badge-info" th:text="${transaction.type}">Type</span></td>
-                                    <td class="font-weight-600" th:text="'৳ ' + ${transaction.amount}">Amount</td>
+                                    <td class="font-weight-600" th:text="'BDT ' + ${transaction.amount}">Amount</td>
                                 </tr>
                                 <tr th:if="${#lists.isEmpty(transactions)}">
                                     <td colspan="6" class="text-center p-3 muted-text">
@@ -151,6 +151,3 @@
 </body>
 
 </html>
-
-
-

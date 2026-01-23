@@ -90,7 +90,7 @@
                     <div class="balance-available-bar mb-1half text-center p-1 bg-light rounded">
                         <span class="font-weight-500 muted-text d-block">Available Wallet Balance</span>
                         <span class="text-primary font-weight-bold font-size-1-2"
-                            th:text="${availableBalance != null ? '৳ ' + availableBalance : '---'}">৳ 0.00</span>
+                            th:text="${availableBalance != null ? 'BDT ' + availableBalance : '---'}">BDT 0.00</span>
                     </div>
 
                     <form action="/api/recharge/proceed" method="post" class="card-grid"
@@ -127,7 +127,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Amount (Tk)</label>
+                            <label>Amount (BDT)</label>
                             <div class="amount-badges mb-0-5">
                                 <span class="badge cursor-pointer"
                                     onclick="document.getElementById('amountInput').value='20'">20</span>
@@ -139,7 +139,7 @@
                                     onclick="document.getElementById('amountInput').value='500'">500</span>
                             </div>
                             <div class="input-group mb-0">
-                                <span class="input-group-text">৳</span>
+                                <span class="input-group-text">BDT</span>
                                 <input type="number" id="amountInput" name="amount" class="form-control"
                                     placeholder="0.00" required>
                             </div>
@@ -182,6 +182,3 @@
 </body>
 
 </html>
-
-
-

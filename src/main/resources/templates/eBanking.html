@@ -85,7 +85,7 @@
                         <div class="balance-info">
                             <h3><i class="fas fa-wallet"></i> Digital Wallet</h3>
                             <div class="amount"
-                                th:text="${walletBalance != null ? '৳ ' + walletBalance : 'Tap to Update'}">---</div>
+                                th:text="${walletBalance != null ? 'BDT ' + walletBalance : 'Tap to Update'}">---</div>
                             <div class="subtitle cursor-pointer"
                                 onclick="window.location.href='/api/ebanking/check-wallet'">
                                 <i class="fas fa-sync-alt"></i> Refresh Balance
@@ -96,7 +96,8 @@
                     <div class="balance-card bank-card-gradient">
                         <div class="balance-info">
                             <h3><i class="fas fa-university"></i> Linked Bank Account</h3>
-                            <div class="amount" th:text="${bankBalance != null ? '৳ ' + bankBalance : 'Tap to Update'}">
+                            <div class="amount"
+                                th:text="${bankBalance != null ? 'BDT ' + bankBalance : 'Tap to Update'}">
                                 ---</div>
                             <div class="subtitle cursor-pointer"
                                 onclick="window.location.href='/api/ebanking/check-bank'">
@@ -124,6 +125,3 @@
 </body>
 
 </html>
-
-
-

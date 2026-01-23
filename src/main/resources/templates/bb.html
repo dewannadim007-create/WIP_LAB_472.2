@@ -88,7 +88,7 @@
                     <div class="balance-available-bar mb-1half text-center p-1 bg-light rounded">
                         <span class="font-weight-500 muted-text d-block">Available Bank Balance</span>
                         <span class="text-primary font-weight-bold font-size-1-2"
-                            th:text="${availableBalance != null ? '৳ ' + availableBalance : '---'}">৳ 0.00</span>
+                            th:text="${availableBalance != null ? 'BDT ' + availableBalance : '---'}">BDT 0.00</span>
                     </div>
 
                     <form action="/api/bb-transfer" method="post" class="card-grid" style="--columns:2; gap:1.5rem;">
@@ -102,9 +102,9 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Amount (৳)</label>
+                            <label>Amount (BDT)</label>
                             <div class="input-group mb-0">
-                                <span class="input-group-text">৳</span>
+                                <span class="input-group-text">BDT</span>
                                 <input type="number" name="amount" class="form-control" placeholder="0.00" min="10"
                                     required>
                             </div>
@@ -146,6 +146,3 @@
 </body>
 
 </html>
-
-
-

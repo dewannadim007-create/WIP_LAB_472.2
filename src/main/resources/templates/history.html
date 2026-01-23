@@ -171,7 +171,7 @@
                                         th:classappend="${trx.sender == user.account or trx.sender == user.mobile} ? 'text-danger' : 'text-success'">
                                         <span
                                             th:text="${trx.sender == user.account or trx.sender == user.mobile} ? '-' : '+'"></span>
-                                        <span th:text="'à§³ ' + ${trx.amount}">500.00</span>
+                                        <span th:text="'BDT ' + ${trx.amount}">500.00</span>
                                     </td>
 
                                     <td>
@@ -196,6 +196,3 @@
 </body>
 
 </html>
-
-
-
