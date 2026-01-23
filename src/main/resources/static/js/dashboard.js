@@ -4,52 +4,7 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Clear the hardcoded styles used for anti-flash so CSS variables take full control
-    document.documentElement.style.backgroundColor = '';
-    document.documentElement.style.color = '';
-
-    // === Theme Toggle Logic ===
-    const themeToggleBtn = document.getElementById('themeToggle');
-    const storedTheme = localStorage.getItem('theme');
-
-    // Apply stored theme on load
-    if (storedTheme) {
-        document.documentElement.setAttribute('data-theme', storedTheme);
-        updateThemeIcon(storedTheme);
-    } else {
-        // Check system preference
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            updateThemeIcon('dark');
-        }
-    }
-
-    if (themeToggleBtn) {
-        themeToggleBtn.addEventListener('click', () => {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            let newTheme = 'light';
-
-            if (currentTheme !== 'dark') {
-                newTheme = 'dark';
-            }
-
-            document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            updateThemeIcon(newTheme);
-        });
-    }
-
-    function updateThemeIcon(theme) {
-        if (!themeToggleBtn) return;
-        const icon = themeToggleBtn.querySelector('i');
-        if (theme === 'dark') {
-            icon.classList.remove('fa-moon');
-            icon.classList.add('fa-sun');
-        } else {
-            icon.classList.remove('fa-sun');
-            icon.classList.add('fa-moon');
-        }
-    }
+    // === Theme Toggle Logic Removed ===
 
     // === Sidebar Toggle Logic ===
     // === Sidebar Toggle Logic ===

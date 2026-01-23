@@ -180,17 +180,7 @@
                 margin-top: 2rem;
             }
         }
-    </style>    <script>
-        (function() {
-            const storedTheme = localStorage.getItem('theme');
-            const isDark = storedTheme === 'dark' || (!storedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches);
-            if (isDark) {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                document.documentElement.style.backgroundColor = '#151e32';
-                document.documentElement.style.color = '#e2e8f0';
-            }
-        })();
-    </script>
+    </style>
 </head>
 
 <body>
@@ -254,5 +244,6 @@
 </body>
 
 </html>
+
 
 

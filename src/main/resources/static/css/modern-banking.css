@@ -72,62 +72,7 @@ body.admin-theme {
     --border-color: #CBD5E1;
 }
 
-/* DARK MODE OVERRIDES */
-
-/* USER Dark Mode (Softer, Richer Slate) */
-/* USER Dark Mode (Softer, Richer Slate - Eye Friendly) */
-[data-theme="dark"] {
-    /* Primary: Soft Teal */
-    --primary-color: #80cbc4;
-    --primary-rgb: 128, 203, 196;
-    --primary-light: #4db6ac;
-
-    /* Accent: Soft Gold */
-    --secondary-color: #ffe57f;
-
-    /* Background: Lighter Slate (Less crushing black) */
-    --bg-color: #151e32;
-    --card-bg: #1E293B;
-
-    /* Text: Soft White (Reduced glare) */
-    --text-primary: #e2e8f0;
-    --text-secondary: #94A3B8;
-    --border-color: #334155;
-
-    /* Error: Soft Red */
-    --danger: #EF5350;
-    --warning: #FBBF24;
-    --success: #34D399;
-
-    /* Glass Adjustments - Smoother blend */
-    --glass-bg: rgba(30, 41, 59, 0.85);
-    --glass-border: rgba(255, 255, 255, 0.08);
-}
-
-/* ADMIN Dark Mode (Professional Dark Grey - Reduced Contrast) */
-[data-theme="dark"] body.admin-theme {
-    /* Primary Base: Muted Blue-Grey */
-    --primary-color: #94a3b8;
-    --primary-rgb: 148, 163, 184;
-    --primary-light: #64748b;
-
-    /* Background: Charcoal (Not Black) */
-    --bg-color: #1a202c;
-    --card-bg: #2d3748;
-
-    /* Text: Softer Grey-White */
-    --text-primary: #e2e8f0;
-    --text-secondary: #a0aec0;
-    --border-color: #4a5568;
-
-    /* Status - Muted */
-    --success: #4ADE80;
-    --warning: #FCD34D;
-
-    /* Glass - Matches Card BG tone */
-    --glass-bg: rgba(45, 55, 72, 0.9);
-    --glass-border: rgba(255, 255, 255, 0.05);
-}
+/* DARK MODE REMOVED BY USER REQUEST */
 
 * {
     box-sizing: border-box;
