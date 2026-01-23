@@ -119,6 +119,9 @@ public class AdminHomeController {
             boolean matchType = false;
             String tType = t.getType() != null ? t.getType().toLowerCase() : "";
 
+            // Debugging
+            // System.out.println("Processing Type: " + tType + " against Filter: " + type);
+
             if ("ALL".equalsIgnoreCase(type)) {
                 matchType = true;
             } else if ("Deposit".equalsIgnoreCase(type)) {
@@ -129,7 +132,9 @@ public class AdminHomeController {
                 // Matches "wallet to wallet", "bank to bank", etc., excluding "add to wallet"
                 matchType = tType.contains("to") && !tType.contains("add to wallet");
             } else if ("Payment".equalsIgnoreCase(type)) {
-                matchType = tType.contains("bill") || tType.contains("recharge") || tType.contains("payment");
+                // Expanded payment mathing logic
+                matchType = tType.contains("bill") || tType.contains("recharge") || tType.contains("payment")
+                        || tType.contains("gas") || tType.contains("electricity");
             }
 
             boolean matchDate = true;
