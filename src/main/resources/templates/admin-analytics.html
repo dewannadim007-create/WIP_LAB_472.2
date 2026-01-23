@@ -171,8 +171,7 @@
                             </thead>
                             <tbody>
                                 <tr th:each="trx : ${transactions}">
-                                    <td class="font-mono text-secondary"
-                                        th:text="${#strings.substring(trx.id,0,8) + '...'}">REF</td>
+                                    <td class="font-mono text-secondary" th:text="${trx.ref}">REF</td>
                                     <td th:text="${trx.sender}">Sender</td>
                                     <td th:text="${trx.receiver}">Receiver</td>
                                     <td>
@@ -201,4 +200,3 @@
 </body>
 
 </html>
-
