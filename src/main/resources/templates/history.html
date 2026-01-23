@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
@@ -8,6 +8,16 @@
     <link rel="stylesheet" href="/css/modern-banking.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        (function() {
+            const storedTheme = localStorage.getItem('theme');
+            if (storedTheme) {
+                document.documentElement.setAttribute('data-theme', storedTheme);
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
 </head>
 
 <body>
@@ -176,7 +186,7 @@
                                         th:classappend="${trx.sender == user.account or trx.sender == user.mobile} ? 'text-danger' : 'text-success'">
                                         <span
                                             th:text="${trx.sender == user.account or trx.sender == user.mobile} ? '-' : '+'"></span>
-                                        <span th:text="'৳ ' + ${trx.amount}">500.00</span>
+                                        <span th:text="'à§³ ' + ${trx.amount}">500.00</span>
                                     </td>
 
                                     <td>

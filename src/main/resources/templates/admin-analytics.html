@@ -9,6 +9,16 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        (function () {
+            const storedTheme = localStorage.getItem('theme');
+            if (storedTheme) {
+                document.documentElement.setAttribute('data-theme', storedTheme);
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
 </head>
 
 <body class="admin-theme">
@@ -81,15 +91,14 @@
             <section class="page-content">
 
                 <div class="card-grid">
-                    <div class="action-card"
-                        style="background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%); color: white; align-items: flex-start; text-align: left; padding: 1.5rem;">
-                        <span style="font-size: 0.9rem; opacity: 0.8; color: white; font-weight: 400;">Total Transaction
+                    <div class="action-card" style="align-items: flex-start; text-align: left; padding: 1.5rem;">
+                        <span style="font-size: 0.9rem; color: var(--text-secondary); font-weight: 400;">Total
+                            Transaction
                             Volume</span>
-                        <h2 style="font-size: 2.5rem; margin: 10px 0; color: white;">
+                        <h2 style="font-size: 2.5rem; margin: 10px 0; color: var(--primary-color);">
                             <span th:text="${totalVolume}">0.00</span> BDT
                         </h2>
-                        <span
-                            style="font-size: 0.8rem; background: rgba(255,255,255,0.2); padding: 2px 8px; border-radius: 4px;">Lifetime</span>
+                        <span class="badge info">Lifetime</span>
                     </div>
 
                     <div class="action-card" style="align-items: flex-start; text-align: left; padding: 1.5rem;">
@@ -149,6 +158,46 @@
                             <a href="/admin/analytics" class="btn btn-secondary"><i class="fas fa-undo"></i> Reset</a>
                         </div>
                     </form>
+                </div>
+
+                <div class="section-card mt-1">
+                    <h3 class="mb-1">Report Results</h3>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Ref ID</th>
+                                    <th>Sender</th>
+                                    <th>Receiver</th>
+                                    <th>Type</th>
+                                    <th>Date</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="trx : ${transactions}">
+                                    <td class="font-mono text-secondary"
+                                        th:text="${#strings.substring(trx.id,0,8) + '...'}">REF</td>
+                                    <td th:text="${trx.sender}">Sender</td>
+                                    <td th:text="${trx.receiver}">Receiver</td>
+                                    <td>
+                                        <span class="badge"
+                                            th:classappend="${trx.type == 'Deposit' or trx.type == 'add to wallet'} ? 'success' : (${trx.type == 'Withdraw'} ? 'warn' : 'info')"
+                                            th:text="${trx.type}">Type</span>
+                                    </td>
+                                    <td th:text="${trx.date}">Date</td>
+                                    <td class="font-weight-600">
+                                        <span th:text="'৳ ' + ${trx.amount}">Amount</span>
+                                    </td>
+                                </tr>
+                                <tr th:if="${#lists.isEmpty(transactions)}">
+                                    <td colspan="6" class="text-center p-3 muted-text">
+                                        No transactions found for the selected criteria.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </section>
         </main>

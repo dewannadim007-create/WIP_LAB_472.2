@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
@@ -181,6 +181,16 @@
             }
         }
     </style>
+    <script>
+        (function() {
+            const storedTheme = localStorage.getItem('theme');
+            if (storedTheme) {
+                document.documentElement.setAttribute('data-theme', storedTheme);
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
 </head>
 
 <body>
@@ -201,7 +211,7 @@
 
         <div class="hero-content">
             <h1>Simple. Secure. Reliable.</h1>
-            <p>A straightforward way to manage your money. Transfers, bill payments, and statements—made easy.</p>
+            <p>A straightforward way to manage your money. Transfers, bill payments, and statementsâ€”made easy.</p>
             <a href="/login" class="cta-button">Customer Login <i class="fas fa-arrow-right"></i></a>
         </div>
     </header>

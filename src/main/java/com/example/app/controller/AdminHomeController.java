@@ -145,6 +145,7 @@ public class AdminHomeController {
         model.addAttribute("selectedType", type);
         model.addAttribute("startDate", startDate);
         model.addAttribute("endDate", endDate);
+        model.addAttribute("transactions", filtered);
 
         return "admin-analytics";
     }

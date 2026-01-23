@@ -8,6 +8,16 @@
     <link rel="stylesheet" href="/css/modern-banking.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        (function () {
+            const storedTheme = localStorage.getItem('theme');
+            if (storedTheme) {
+                document.documentElement.setAttribute('data-theme', storedTheme);
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
 </head>
 
 <body class="admin-theme">
@@ -173,12 +183,12 @@
                         <input type="hidden" name="accountId" id="selectedAccount">
 
                         <button type="submit" name="action" value="approve" class="btn btn-primary badge-success-solid">
-                            <i class="fas fa-check"></i> Accept
+                            <i class="fas fa-check"></i> Success
                         </button>
 
                         <button type="submit" name="action" value="reject"
                             class="btn btn-secondary badge-warn-solid text-dark">
-                            <i class="fas fa-ban"></i> Decline
+                            <i class="fas fa-ban"></i> Declined
                         </button>
 
                         <button type="submit" name="action" value="delete" class="btn btn-danger"

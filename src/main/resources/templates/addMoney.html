@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
@@ -8,6 +8,16 @@
     <link rel="stylesheet" href="/css/modern-banking.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        (function() {
+            const storedTheme = localStorage.getItem('theme');
+            if (storedTheme) {
+                document.documentElement.setAttribute('data-theme', storedTheme);
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
 </head>
 
 <body>
@@ -96,14 +106,14 @@
                         style="border: 1px dashed var(--primary-color);">
                         <span class="linked-balance-label d-block text-secondary mb-0-5">Linked Bank Balance</span>
                         <span class="linked-balance-amount font-weight-bold font-size-1-2 text-primary"
-                            th:text="${balance != null ? '৳ ' + balance : '---'}">৳ 0.00</span>
+                            th:text="${balance != null ? 'à§³ ' + balance : '---'}">à§³ 0.00</span>
                     </div>
 
                     <form action="/api/add-money" method="post" class="card-grid" style="--columns:1; gap:1.25rem;">
                         <div class="form-group">
                             <label>Amount (Tk)</label>
                             <div class="input-group mb-0">
-                                <span class="input-group-text">৳</span>
+                                <span class="input-group-text">à§³</span>
                                 <input type="number" name="amount" class="form-control" placeholder="0.00" min="50"
                                     required>
                             </div>
